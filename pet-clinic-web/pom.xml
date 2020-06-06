@@ -38,6 +38,12 @@
         </dependency>
 
         <!-- end of webjars -->
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <artifactId>pet-clinic-data</artifactId>
             <groupId>com</groupId>
