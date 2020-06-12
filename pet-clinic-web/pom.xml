@@ -11,12 +11,40 @@
     <artifactId>pet-clinic-web</artifactId>
     <properties>
         <!-- Web dependencies -->
-        <webjars-bootstrap.version>4.5.0</webjars-bootstrap.version>
+        <webjars-bootstrap.version>3.3.6</webjars-bootstrap.version>
         <webjars-jquery-ui.version>1.11.4</webjars-jquery-ui.version>
         <webjars-jquery.version>2.2.4</webjars-jquery.version>
         <wro4j.version>1.8.0</wro4j.version>
     </properties>
+
     <dependencies>
+        <dependency>
+            <artifactId>pet-clinic-data</artifactId>
+            <groupId>com</groupId>
+            <version>0.0.3-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- webjars -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator-core</artifactId>
@@ -36,40 +64,13 @@
             <artifactId>bootstrap</artifactId>
             <version>${webjars-bootstrap.version}</version>
         </dependency>
-
         <!-- end of webjars -->
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <artifactId>pet-clinic-data</artifactId>
-            <groupId>com</groupId>
-            <version>0.0.3-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
             <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
                 <exclusion>
                     <groupId>junit</groupId>
                     <artifactId>junit</artifactId>
@@ -87,13 +88,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>3.3.3</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
-
 
     <build>
         <plugins>
@@ -109,53 +109,26 @@
                         </goals>
                     </execution>
                 </executions>
-
-
                 <configuration>
-                    <wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory
-                    </wroManagerFactory>
+                    <wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory</wroManagerFactory>
                     <cssDestinationFolder>${project.build.directory}/classes/static/resources/css</cssDestinationFolder>
                     <wroFile>${basedir}/src/main/wro/wro.xml</wroFile>
                     <extraConfigFile>${basedir}/src/main/wro/wro.properties</extraConfigFile>
                     <contextFolder>${basedir}/src/main/less</contextFolder>
                 </configuration>
-
                 <dependencies>
                     <dependency>
                         <groupId>org.webjars</groupId>
                         <artifactId>bootstrap</artifactId>
-                        <version>4.5.0</version>
+                        <version>${webjars-bootstrap.version}</version>
                     </dependency>
-
-
                     <dependency>
-
                         <groupId>org.mockito</groupId>
-
                         <artifactId>mockito-core</artifactId>
-
-                        <version>3.3.3</version>
-
+                        <version>2.23.0</version>
                     </dependency>
-
-                </dependencies>
-
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
-                <dependencies>
-<!--                    <dependency>-->
-<!--                        <groupId>org.junit.platform</groupId>-->
-<!--                        <artifactId>junit-platform-surefire-provider</artifactId>-->
-<!--                        <version>1.3.2</version>-->
-<!--                        <scope>test</scope>-->
-<!--                    </dependency>-->
                 </dependencies>
             </plugin>
-
         </plugins>
-
     </build>
-
 </project>
