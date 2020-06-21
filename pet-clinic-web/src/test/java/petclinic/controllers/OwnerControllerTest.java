@@ -19,7 +19,9 @@ import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.isNotNull;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
@@ -78,5 +80,17 @@ class OwnerControllerTest {
                 .andExpect(view().name("notImplemented"));
 
         verifyZeroInteractions(ownerService);
+    }
+
+
+
+    @Test
+    void showOwner() throws Exception{
+        when(ownerService.findById(anyLong())).thenReturn(Owner.builder().id(1L).build());
+
+        mockMvc.perform(get("/owners/123"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("owners/ownerDetails"))
+                .andExpect(model().attribute("owner",hasProperty("id",is(1L))));
     }
 }
