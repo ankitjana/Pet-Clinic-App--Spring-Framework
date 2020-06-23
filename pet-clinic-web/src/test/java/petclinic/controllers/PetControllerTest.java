@@ -127,7 +127,7 @@ class PetControllerTest {
         when(petTypeService.findAll()).thenReturn(petTypes);
         mockMvc.perform(get("/owners/1/pets/new"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("pets/createOrUpdateForm"))
+                .andExpect(view().name("pets/createOrUpdatePetForm"))
                 .andExpect(model().attributeExists("owner"))
                 .andExpect(model().attributeExists("pet"));
     }
@@ -152,7 +152,7 @@ class PetControllerTest {
 
         mockMvc.perform(get("/owners/1/pets/2/edit"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("pets/createOrUpdateForm"))
+                .andExpect(view().name("pets/createOrUpdatePetForm"))
                 .andExpect(model().attributeExists("owner"))
                 .andExpect(model().attributeExists("pet"));
     }
