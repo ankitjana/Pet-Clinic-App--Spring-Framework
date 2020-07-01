@@ -1,5 +1,7 @@
 package petclinic.controllers;
 
+import java.beans.PropertyEditorSupport;
+import java.time.LocalDate;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -33,6 +35,12 @@ class VisitController {
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
+        dataBinder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport(){
+          @Override
+          public void setAsText(String text) throws IllegalArgumentException{
+              setValue(LocalDate.parse(text));
+          }
+        });
     }
 
 
