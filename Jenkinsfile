@@ -3,6 +3,6 @@ node{
     git 'https://github.com/javahometech/my-app'
     }
     stage('Compile-Package'){
-    sh 'mvn package'
+    sh 'mvn clean package'
     }
    }
